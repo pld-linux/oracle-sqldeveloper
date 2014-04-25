@@ -1,0 +1,12 @@
+--- oracle-sqldeveloper-4.0.1.14.48/sqldeveloper.desktop~	2014-04-25 23:47:57.000000000 +0300
++++ oracle-sqldeveloper-4.0.1.14.48/sqldeveloper.desktop	2014-04-26 01:11:50.603400337 +0300
+@@ -2,7 +2,8 @@
+ Encoding=UTF-8
+ Name=SQL Developer
+ Comment=Oracle SQL Developer
+-Icon=/opt/sqldeveloper/icon.png
++Icon=sqldeveloper
+ Exec=sqldeveloper
+ Terminal=false
+ Type=Application
++Categories=Database;Development;

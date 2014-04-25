@@ -1,13 +1,15 @@
 Summary:	Oracle SQL Developer
 Name:		oracle-sqldeveloper
 Version:	4.0.1.14.48
-Release:	0.1
+Release:	0.2
 License:	OTN (proprietary, non-distributable)
 Group:		Applications/Databases
 Source0:	http://download.oracle.com/otn/java/sqldeveloper/sqldeveloper-%{version}-1.noarch.rpm
 # NoSource0-md5:	8342e4369904d731af20f9020701b708
 URL:		http://www.oracle.com/technetwork/developer-tools/sql-developer/
 BuildRequires:	rpm-utils
+Patch0:		desktop.patch
+Requires:	desktop-file-utils
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -38,17 +40,31 @@ rm sqldeveloper/sqldeveloper/bin/*-Darwin.conf
 rm sqldeveloper/sqldeveloper/bin/SQLDeveloperIcons.icns
 rm sqldeveloper/view-source-paths.lis
 
+%patch0 -p1
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_appdir}
 cp -l readme.html $RPM_BUILD_ROOT/cp-test && l=l && rm -f $RPM_BUILD_ROOT/cp-test
 cp -a$l sqldeveloper/* $RPM_BUILD_ROOT%{_appdir}
 
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
+cp -p sqldeveloper.desktop $RPM_BUILD_ROOT%{_desktopdir}
+cp -p icon.png $RPM_BUILD_ROOT%{_desktopdir}/sqldeveloper.png
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+%update_desktop_database
+
+%postun
+%update_desktop_database
+
 %files
 %defattr(644,root,root,755)
+%{_desktopdir}/sqldeveloper.desktop
+%{_desktopdir}/sqldeveloper.png
 %dir %{_appdir}
 %{_appdir}/configuration
 %{_appdir}/dataminer
