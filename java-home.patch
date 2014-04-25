@@ -1,0 +1,24 @@
+--- oracle-sqldeveloper-4.0.1.14.48/sqldeveloper/sqldeveloper/bin/sqldeveloper~	2014-04-25 23:47:57.000000000 +0300
++++ oracle-sqldeveloper-4.0.1.14.48/sqldeveloper/sqldeveloper/bin/sqldeveloper	2014-04-26 02:01:05.490507412 +0300
+@@ -109,4 +109,11 @@
+     echo "`GetUserHomeDirName`"
+ }
+ 
++# set JAVA_HOME from jpackage-utils if available
++if [ -z "$JAVA_HOME" ] && [ -f /usr/share/java-utils/java-functions ]; then
++	. /usr/share/java-utils/java-functions
++	set_jvm
++fi
++OIDE_JAVA_HOME=$JAVA_HOME
++
+ LaunchIDE "$@"
+--- oracle-sqldeveloper-4.0.1.14.48/sqldeveloper/sqldeveloper/bin/sqldeveloper.conf~	2014-04-25 23:47:57.000000000 +0300
++++ oracle-sqldeveloper-4.0.1.14.48/sqldeveloper/sqldeveloper/bin/sqldeveloper.conf	2014-04-26 02:01:20.711174342 +0300
+@@ -1,6 +1,6 @@
+ IncludeConfFile ../../ide/bin/ide.conf
+ 
+-SetJavaHome ../../jdk
++#SetJavaHome ../../jdk
+ 
+ #Set our usage tracking URI
+ AddVMOption  -Dide.update.usage.servers=http://www.oracle.com/webfolder/technetwork/sqldeveloper/usage.xml
