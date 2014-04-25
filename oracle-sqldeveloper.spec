@@ -1,7 +1,7 @@
 Summary:	Oracle SQL Developer
 Name:		oracle-sqldeveloper
 Version:	4.0.1.14.48
-Release:	0.2
+Release:	0.3
 License:	OTN (proprietary, non-distributable)
 Group:		Applications/Databases
 Source0:	http://download.oracle.com/otn/java/sqldeveloper/sqldeveloper-%{version}-1.noarch.rpm
@@ -48,9 +48,10 @@ install -d $RPM_BUILD_ROOT%{_appdir}
 cp -l readme.html $RPM_BUILD_ROOT/cp-test && l=l && rm -f $RPM_BUILD_ROOT/cp-test
 cp -a$l sqldeveloper/* $RPM_BUILD_ROOT%{_appdir}
 
-install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}}
+install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir},%{_bindir}}
 cp -p sqldeveloper.desktop $RPM_BUILD_ROOT%{_desktopdir}
 cp -p icon.png $RPM_BUILD_ROOT%{_desktopdir}/sqldeveloper.png
+ln -s %{_appdir}/sqldeveloper/bin/sqldeveloper $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -63,6 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/sqldeveloper
 %{_desktopdir}/sqldeveloper.desktop
 %{_desktopdir}/sqldeveloper.png
 %dir %{_appdir}
