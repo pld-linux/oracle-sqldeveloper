@@ -1,11 +1,11 @@
 Summary:	Oracle SQL Developer
 Name:		oracle-sqldeveloper
-Version:	4.0.1.14.48
-Release:	0.4
+Version:	4.0.2.15.21
+Release:	1
 License:	OTN (proprietary, non-distributable)
 Group:		Applications/Databases
 Source0:	http://download.oracle.com/otn/java/sqldeveloper/sqldeveloper-%{version}-1.noarch.rpm
-# NoSource0-md5:	8342e4369904d731af20f9020701b708
+# NoSource0-md5:	04b21ac56a475c9c0773531808e51d4d
 URL:		http://www.oracle.com/technetwork/developer-tools/sql-developer/
 BuildRequires:	rpm-utils
 Patch0:		desktop.patch
@@ -72,6 +72,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/sqldeveloper.desktop
 %{_desktopdir}/sqldeveloper.png
 %dir %{_appdir}
+%{_appdir}/ant
 %{_appdir}/configuration
 %{_appdir}/dataminer
 %{_appdir}/dropins
@@ -88,9 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_appdir}/netbeans
 %{_appdir}/rdbms
 %{_appdir}/sleepycat
+%{_appdir}/sqlcli
 %{_appdir}/sqlj
 %{_appdir}/svnkit
-%{_appdir}/sqlcli
 
 %dir %{_appdir}/sqldeveloper
 %{_appdir}/sqldeveloper/demo
